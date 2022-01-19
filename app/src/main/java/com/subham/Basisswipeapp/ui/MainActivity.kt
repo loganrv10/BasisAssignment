@@ -4,7 +4,7 @@ import android.content.ContentValues.TAG
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
-import androidx.lifecycle.MutableLiveData
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.subham.Basisswipeapp.DataItem
 import com.subham.Basisswipeapp.Model.Remote.Network
 import com.subham.Basisswipeapp.R
@@ -12,17 +12,13 @@ import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import okhttp3.Response
 import org.json.JSONException
 import org.json.JSONObject
-import java.lang.Character.toString
-import java.lang.Integer.toString
-import java.util.Objects.toString
 
 
 class MainActivity : AppCompatActivity() {
-
-    private var mutableDataFromApi = MutableLiveData<List<DataItem>>()
+    lateinit var adapter: CardAdapter
+    private var mutableDataFromApi = java.util.<List<DataItem>>()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -83,13 +79,26 @@ class MainActivity : AppCompatActivity() {
 
 
         }
+        setrecycleview()
+
+
 
 
     }
 
+    private fun setrecycleview() {
+              recycleView.apply {
+
+                  adapter = CardAdapter(mutableDataFromApi,this@MainActivity)
+                  layoutManager=LinearLayoutManager(applicationContext)
+              }
+    }
 
 
 }
+
+
+
 
 
 

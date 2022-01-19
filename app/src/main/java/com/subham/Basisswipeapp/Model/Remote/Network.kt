@@ -1,4 +1,4 @@
-package com.subham.basisswipeapp.Model.Remote
+package com.subham.Basisswipeapp.Model.Remote
 
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
@@ -6,7 +6,7 @@ import retrofit2.converter.scalars.ScalarsConverterFactory
 
 class Network {
     companion object{
-        fun getRetrofit() : Retrofit{
+        private fun getRetrofit() : Retrofit{
             return Retrofit.Builder()
                 .baseUrl("https://gist.githubusercontent.com/")
                 .addConverterFactory(ScalarsConverterFactory.create())

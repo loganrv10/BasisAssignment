@@ -1,4 +1,4 @@
-package com.subham.basisswipeapp.Model.Remote
+package com.subham.Basisswipeapp.Model.Remote
 
 import retrofit2.http.GET
 

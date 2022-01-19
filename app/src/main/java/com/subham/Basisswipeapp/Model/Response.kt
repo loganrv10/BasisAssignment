@@ -1,4 +1,4 @@
-package com.subham.basisswipeapp
+package com.subham.Basisswipeapp
 
 import com.google.gson.annotations.SerializedName
 

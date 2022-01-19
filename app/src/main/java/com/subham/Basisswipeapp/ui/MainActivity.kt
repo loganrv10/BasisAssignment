@@ -28,6 +28,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         val strData = StringBuffer()
 
+
         CoroutineScope(Dispatchers.IO).launch {
             val data = Network.api.getData()
 
@@ -38,6 +39,8 @@ class MainActivity : AppCompatActivity() {
 //                 }
 //             }
 
+
+            //Removing "/" from the api
             for (i in data.indices) {
                 if (data[i] == '/') {
                     continue
@@ -65,7 +68,7 @@ class MainActivity : AppCompatActivity() {
 
 
                 }
-
+                //checking if the api is working or not
                 for(i in dataList) {
                     Log.d("shubham", "onCreate: ${i.id}")
                 }
@@ -73,21 +76,19 @@ class MainActivity : AppCompatActivity() {
 
                 mutableDataFromApi.postValue(dataList)
 
-                /*
-                After the response class  is built, We need to update the UI so we have to communicate with the UI thread
-                and display the data in the main thread.
-                 */
 
-                // This method will be called in the main thread
             } catch (e: JSONException) {
                 Log.d("shubham", e.toString())
             }
-//             buildResponseModel(strData);
+
 
         }
 
 
     }
+
+
+
 }
 
 

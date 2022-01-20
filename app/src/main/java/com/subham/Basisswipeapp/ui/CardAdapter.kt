@@ -1,16 +1,13 @@
-package com.subham.Basisswipeapp.ui
 
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.lifecycle.MutableLiveData
 import androidx.recyclerview.widget.RecyclerView
 import com.subham.Basisswipeapp.DataItem
 import com.subham.Basisswipeapp.R
 import kotlinx.android.synthetic.main.new_layout.view.*
-import java.util.ArrayList
 
-class CardAdapter(private val list: ArrayList<List<DataItem>>, mainActivity: MainActivity): RecyclerView.Adapter<CardAdapter.CardViewHolder>() {
+class CardAdapter(private val list: ArrayList<DataItem>): RecyclerView.Adapter<CardAdapter.CardViewHolder>() {
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CardViewHolder {
@@ -32,9 +29,9 @@ class CardAdapter(private val list: ArrayList<List<DataItem>>, mainActivity: Mai
 
     class CardViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
-        fun setData(dataItem: List<DataItem>){
+        fun setData(dataItem: DataItem){
             itemView.apply {
-                TvPageNum.text = dataItem.id
+//               TvPageNum.text = dataItem.id
                 TvId.text = dataItem.id
                 TvText.text = dataItem.text
             }
@@ -43,4 +40,3 @@ class CardAdapter(private val list: ArrayList<List<DataItem>>, mainActivity: Mai
     }
 
 }
-

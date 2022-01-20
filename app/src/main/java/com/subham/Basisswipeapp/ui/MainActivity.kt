@@ -1,5 +1,6 @@
 package com.subham.Basisswipeapp.ui
 
+import CardAdapter
 import android.content.ContentValues.TAG
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -17,8 +18,9 @@ import org.json.JSONObject
 
 
 class MainActivity : AppCompatActivity() {
-    lateinit var adapter: CardAdapter
-    private var mutableDataFromApi = java.util.<List<DataItem>>()
+    var manager: LinearLayoutManager? = null
+
+    private var dataList = ArrayList<DataItem>()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -54,14 +56,13 @@ class MainActivity : AppCompatActivity() {
                 val jsonObject = JSONObject(strData.toString())
                 val jsonArrayData = jsonObject.getJSONArray("data")
                 Log.d(TAG, "buildResponseModel: ${jsonArrayData.get(0)}")
-                val dataList: ArrayList<DataItem> = ArrayList()
+             //   val dataList: ArrayList<DataItem> = ArrayList()
                 for (i in 0 until jsonArrayData.length()) {
                     val dataResponse = jsonArrayData.getJSONObject(i)
                     val id = dataResponse.getString("id")
                     val text = dataResponse.getString("text")
                     val data = DataItem(id, text)
                     dataList.add(data)
-
 
                 }
                 //checking if the api is working or not
@@ -70,7 +71,7 @@ class MainActivity : AppCompatActivity() {
                 }
                 Log.d("shubham", dataList.toString())
 
-                mutableDataFromApi.postValue(dataList)
+
 
 
             } catch (e: JSONException) {
@@ -79,20 +80,22 @@ class MainActivity : AppCompatActivity() {
 
 
         }
-        setrecycleview()
+        setViewPager()
+
+
 
 
 
 
     }
 
-    private fun setrecycleview() {
-              recycleView.apply {
-
-                  adapter = CardAdapter(mutableDataFromApi,this@MainActivity)
-                  layoutManager=LinearLayoutManager(applicationContext)
-              }
+    private fun setViewPager() {
+        viewPager.apply {
+            adapter = CardAdapter(dataList)
+           // manager = LinearLayoutManager(this@MainActivity)
+        }
     }
+
 
 
 }
